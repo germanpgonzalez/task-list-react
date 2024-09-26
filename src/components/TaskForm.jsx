@@ -7,11 +7,15 @@ export const TaskForm = ({setData, data}) => {
 
     const handleSubmit = (e) => {
        e.preventDefault();
+
        setData([...data,{
         id: data.length,
         title,
         description
-       }])
+       }]);
+       
+       setTitle('');
+       setDescription('');
     }
 
     const handleTitle = (e) => {
@@ -24,10 +28,24 @@ export const TaskForm = ({setData, data}) => {
 
     return (
         <form>
-            <h1>Task Form 😀</h1>
-            <input type="text" placeholder="Ingrese una tarea" onChange={(e) => handleTitle(e)}/>
-            <textarea type="text" placeholder="Ingrese una descripción" cols="45" rows="2" onChange={(e) => handleDescription(e)}/>
+
+            <input 
+                type="text" 
+                placeholder="Ingrese una tarea" 
+                onChange={(e) => handleTitle(e)} 
+                value={title}
+            />
+
+            <textarea 
+                type="text" 
+                placeholder="Ingrese una descripción" 
+                cols="45" rows="2" 
+                onChange={(e) => handleDescription(e)}
+                value={description} 
+            />
+
             <button onClick={(e) => handleSubmit(e)}>Enviar</button>
+
         </form>
     )
 }

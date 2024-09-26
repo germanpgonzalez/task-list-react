@@ -15,7 +15,7 @@ function App() {
 
   return (
     <>
-      <h1>Task List App 🌍</h1>
+      <h1>Task List App 📋</h1>
       <TaskForm setData={setData} data={data}/>
       <TaskList data={data}/>
     </>
