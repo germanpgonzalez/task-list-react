@@ -12,11 +12,18 @@ function App() {
     setData(db);
   },[])
 
+  const createTask = ({title, description}) => {
+    setData([...data, {
+      title,
+      description,
+      id: data.length
+    }])
+  }
 
   return (
     <>
       <h1>Task List App 📋</h1>
-      <TaskForm setData={setData} data={data}/>
+      <TaskForm createTask={createTask}/>
       <TaskList data={data}/>
     </>
   )

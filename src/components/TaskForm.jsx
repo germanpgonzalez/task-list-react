@@ -1,18 +1,20 @@
 import { useState } from "react";
 
 
-export const TaskForm = ({setData, data}) => {
+export const TaskForm = ({createTask}) => {
+    
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
 
     const handleSubmit = (e) => {
        e.preventDefault();
 
-       setData([...data,{
-        id: data.length,
-        title,
-        description
-       }]);
+       const newTask = {
+         title,
+         description
+       }
+
+       createTask(newTask);
        
        setTitle('');
        setDescription('');
