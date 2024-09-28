@@ -6,6 +6,7 @@ import { TaskList } from './components/TaskList';
 import { db } from './data/db';
 
 function App() {
+
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -20,11 +21,18 @@ function App() {
     }])
   }
 
+  const deleteTask = (idTask) => {
+    const newData = data.filter((task) => task.id !== idTask);
+    setData(newData);
+  }
+
+
+
   return (
     <>
       <h1>Task List App 📋</h1>
       <TaskForm createTask={createTask}/>
-      <TaskList data={data}/>
+      <TaskList data={data} deleteTask={deleteTask}/>
     </>
   )
 }
