@@ -3,22 +3,31 @@ import { useEffect } from 'react';
 import { TaskForm } from './components/TaskForm';
 import { TaskList } from './components/TaskList';
 
-import { db } from './data/db';
 
 function App() {
 
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    setData(db);
-  },[])
+    const tasks = JSON.parse(localStorage.getItem('taskList'));
+
+    if(tasks.length > 0) {
+      setData(tasks)
+    }
+
+  },[]);
+
+  useEffect(() => {
+    localStorage.setItem('taskList', JSON.stringify(data));
+  },[data]);
 
   const createTask = ({title, description}) => {
     setData([...data, {
       title,
       description,
       id: data.length
-    }])
+    }]);
+    
   }
 
   const deleteTask = (idTask) => {
@@ -26,6 +35,7 @@ function App() {
     setData(newData);
   }
 
+  
 
 
   return (
